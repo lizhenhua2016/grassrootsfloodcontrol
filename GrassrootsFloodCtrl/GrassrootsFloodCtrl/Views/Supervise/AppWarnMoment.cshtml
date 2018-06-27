@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "AppWarnMoment";
+    Layout = "~/Views/Shared/_SuperviseLayout.cshtml";
+}
+<link href="~/css/stylewarn.css" rel="stylesheet" />
+<div class="rightbox">
+    <div class="row" style="margin-top:16px;">
+        <div id="prov" style="display:none" class="col-xs-12 m10">
+            <div class="moudle">
+                <div class="province">
+                    <span>全省启动应急响应的有</span>
+                    <div id="cities"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12" style="padding:0;">
+            <div id="citycounty" style="overflow:hidden;overflow-y:auto"></div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <script type="text/javascript">
+        var adcd = '@ViewData["adcd"]';
+        var level = '@ViewData["Level"]';
+        $(function () {
+            $("#citycounty").height($(document).height() - 150);
+            if (level == "省级用户") {
+                $("#prov").show();
+                Init("省级用户","");
+            } else if (level == "市级用户") {
+                getinfo("市级用户", adcd, "");
+                $("#prov").hide();
+            }
+        });
+        function getinfo(type, adcdid,name) {
+            console.log(adcdid);
+            var htmlstr=""
+            if (type == "省级用户") {
+                htmlstr = name + " - ";
+            } else if (type == "市级用户") {
+                htmlstr = name;
+            }
+            $.ajax({
+                url: "/api/Supervise/CountyEmergencyMessageList",
+                type: "get",
+                dataType: "json",
+                beforeSend: function () {
+                    var index = layer.load(1, { shade: [0.1, '#fff'] });
+                },
+                data: { "PAdcdId": adcdid },
+                success: function (data) {
+                    data = eval(data);
+                    $.each(data,
+                        function (i, item) {
+                            $("#citycounty").append('<div adcdid=' + item.adcdId + ' warneventid=' + item.warnEventId + ' class="countyblock urgent-county"><div class= "head"> ' + htmlstr + ' <b>' +
+                                item.adnm +
+                                '</b></div ><div class="name"><p><span>事件名称：</span>' +
+                                item.eventName +
+                                '</p><p><span>创建时间：</span>' +
+                                item.startTime +
+                                '</p></div><div class="info"><p><b>' +
+                                item.messageNum +
+                                '</b>条<br />消息数量</p><p><b>' +
+                                item.personnum +
+                                '</b>人<br />应到岗</p><p style="border-right:none;"><b>' +
+                                item.transfernum +
+                                '</b>人<br />总转移人数</p></div></div>')
+                        });
+                    $(".countyblock").on("click", function () {
+                        var warneventid = $(this).attr("warneventid");
+                        var adcdid = $(this).attr("adcdid");
+                        window.location.href = "AppWarnMomentCounty?warneventid=" + warneventid + "&adcdid=" + adcdid + "";
+                    })
+                },
+                complete: function () {
+                    // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+                    layer.closeAll('loading');
+                }
+            })
+        }
+        function Init(type, adcdid) {
+            $.ajax({
+                url: "/api/Supervise/EmergencyStartCityList",
+                type: "get",
+                dataType: "json",
+                data: {},
+                success: function (data) {
+                    data = eval(data);
+                    var sb = '';
+                    $.each(data,
+                        function (i, item) {
+                            var name = item.adnm;
+                            var s = i == 0 ? "selected" : "";
+                            if (item.isStart == 1) {
+                                $("#cities").append('<a href="javascript:;" data-adcdId=' + data[i].adcdCode + ' class="city ' + s + '">' + name + '</a>')
+                            } else {
+                                $("#cities").append('<a href="javascript:;" data-adcdId=' + item.adcdCode + '  class="city">' + name + '</a>')
+                            }
+                            if (i == 0) {
+                                $.ajax({
+                                    url: "/api/Supervise/CountyEmergencyMessageList",
+                                    type: "get",
+                                    dataType: "json",
+                                    data: { "PAdcdId": data[i].adcdCode },
+                                    success: function (data) {
+                                        data = eval(data);
+                                        $.each(data,
+                                            function (i, item) {
+                                                $("#citycounty").append('<div adcdcode=' + item.adcdCode + ' adcdid=' + item.adcdId + ' warneventid=' + item.warnEventId + ' class="countyblock urgent-county"><div class= "head"> ' + name + ' - <b>' +
+                                                    item.adnm +
+                                                    '</b></div ><div class="name"><p><span>事件名称：</span>' +
+                                                    item.eventName +
+                                                    '</p><p><span>创建时间：</span>' +
+                                                    item.startTime +
+                                                    '</p></div><div class="info"><p><b>' +
+                                                    item.messageNum +
+                                                    '</b>条<br />消息数量</p><p><b>' +
+                                                    item.personnum +
+                                                    '</b>人<br />应到岗</p><p style="border-right:none;"><b>' +
+                                                    item.transfernum +
+                                                    '</b>人<br />总转移人数</p></div></div>')
+                                            });
+                                        $(".countyblock").on("click", function () {
+                                            var warneventid = $(this).attr("warneventid");
+                                            var adcdid = $(this).attr("adcdid");
+                                            window.location.href = "AppWarnMomentCounty?warneventid=" + warneventid + "&adcdid=" + adcdid + "";
+                                        })
+                                    }
+                                })
+                            }
+                        });
+                    $(".city").on("click", function (warneventid) {
+                        var name = $(this).text();
+                        $("#citycounty").empty();
+                        $(this).addClass("selected").siblings().removeClass("selected");
+                        getinfo(type, $(this).attr("data-adcdId"),name)
+                    })
+                }
+            });
+
+        }
+    </script>
+}
+

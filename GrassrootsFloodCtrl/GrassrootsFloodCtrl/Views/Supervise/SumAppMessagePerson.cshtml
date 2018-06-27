@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "SumAppMessagePerson";
+    Layout = "~/Views/Shared/_SuperviseLayout.cshtml";
+}
+@Styles.Render("~/css/bootstrap-plugin")
+<nav class="navbar navbar-default">
+    <p class="navbar-text navbar-left"><a href="/Supervise/AppWarnList" class="navbar-link">&lt;返回</a></p>
+</nav>
+<div class="col-sm-12">
+    <div style="overflow-y:auto;height:550px;font-size:30px;">
+        <table id="exampleTable" data-mobile-responsive="true"></table>
+    </div>
+</div>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="~/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="~/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="~/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="~/js/plugins/validate/messages_zh.min.js"></script>
+<script src="~/js/plugins/jqTreeGrid/jquery.treegrid.min.js"></script>
+<script src="~/js/plugins/jqTreeGrid/jquery.treegrid.extension.js"></script>
+<script src="~/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js"></script>
+<script src="~/js/plugins/chosen/chosen.jquery.js"></script>
+<script src="~/js/plugins/layer/layer.js"></script>
+<script src="~/js/content.js?v=1.0.0"></script>
+@Scripts.Render("~/js/plupload")
+@Scripts.Render("~/js/bootstrap-plugin")
+@Scripts.Render("~/Bundles/vendor/js/bottom")
+<script type="text/javascript">
+    $(function () {
+        getCheck(7);
+        load();
+    })
+    function read(warnEventId, isstate, reciveAdcd) {
+        openModal('已签到人员列表', '/Supervise/SumWarnRead/?id=' + @ViewData["warnEventId"] + '&read=' + true + '&reciveAdcd=' + reciveAdcd, { width: 750 });
+    }
+    function noread(warnEventId, isstate, reciveAdcd) {
+        openModal('未签到人员列表', '/Supervise/SumWarnNoRead/?id=' + @ViewData["warnEventId"] + '&read=' + false + '&reciveAdcd=' + reciveAdcd, { width: 750 });
+    }
+    function load() {
+        $('#exampleTable')
+            .bootstrapTreeTable(
+                {
+                    id: 'id',
+                    code: 'id',
+                    parentColumn: 'parentId',
+                    type: "GET", // 请求数据的ajax类型
+                    url: '/api/sumAppUser/getMessageReadStateListSum', // 请求数据的ajax的url
+                    ajaxParams: {
+                        adcd: '@ViewData["adcd"]',
+                        warnEventId: '@ViewData["warnEventId"]'
+                    }, // 请求数据的ajax的data属性
+                    expandColumn: '0', // 在哪一列上面显示展开按钮
+                    striped: true, // 是否各行渐变色
+                    bordered: true, // 是否显示边框
+                    expandAll: false, // 是否全部展开
+                    // toolbar : '#exampleToolbar',
+                    columns: [
+                        {
+                            field: 'adnm',
+                            align: 'center',
+                            title: '单位名称'
+                        },
+                        {
+                            field: 'sendMessage',
+                            align: 'center',
+                            title: '消息内容',
+                            formatter: function (item, index) {
+                                if (item.readCount == 0 && item.noReadCount == 0) {
+                                    var html = "<span style='color:red;'>未进行转发</span>";
+                                    return html;
+                                }
+                                return item.sendMessage;
+                            }
+                        },
+                        {
+                            field: 'readCount',
+                            align: 'center',
+                            title: '已签到人数',
+                        },
+                        {
+                            field: 'noReadCount',
+                            align: 'center',
+                            title: '未签到人数',
+                        },
+                        {
+                            title: '查看人员信息',
+                            field: 'reciveAdcd',
+                            align: 'center',
+                            formatter: function (item, index) {
+                                var e = '<a class="btn btn-primary btn-sm" href="#" title="查看已签到" onclick="read(' +@ViewData["warnEventId"] +',' + true + ',' + item.reciveAdcd + ')" >已签到</a> ';
+                                var f = '<a class="btn btn-primary btn-sm" href="#" title="查看未签到"  onclick="noread(' +@ViewData["warnEventId"] +',' + true + ',' + item.reciveAdcd + ')">未签到</a> ';
+                                return e + f;
+                            }
+                        }]
+                    @*onClickRow: function (row, $el, field) {
+                           /Supervise/SumWarnNoRead/?id=@ViewData["warnEventId"]&read=false&reciveAdcd='+item.reciveAdcd+'
+                        if (field == "readCount") {
+                            openModal('已阅读人员列表', '/Supervise/SumWarnRead/?id=' + @ViewData["warnEventId"] + '&read=' + true + '&reciveAdcd' + row.reciveAdcd, { width: 750 });
+                        }
+                        if (field == "noReadCount") {
+                            openModal('未阅读人员列表', '/Supervise/SumWarnNoRead/?id=' + @ViewData["warnEventId"] + '&read=' + false + '&reciveAdcd' + row.reciveAdcd, { width: 750 });
+                        }
+                    }*@
+                });
+    }
+</script>

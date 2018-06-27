@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BindTownLiableData</title>
+
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css"
+          rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <table id="content"></table>
+    </div>
+
+    <script src="~/Content/floatmenu/js/jquery-1.11.0.min.js"></script>
+
+    @Styles.Render("~/css/bootstrap-plugin")
+    @Scripts.Render("~/js/bootstrap-plugin")
+
+    <script>
+        $(function () {
+            
+            InitContent();
+        });
+
+        function queryParamsPostsed(params) {
+            return {
+                PageSize: params.limit,
+                PageIndex: (params.offset / params.limit) + 1,
+                ReceiveAdcd: @ViewBag.adcd,
+                WarnInfoId: @ViewBag.warninfoid
+            };
+        }
+
+        
+
+        function InitContent() {
+            var $table = $('#content');
+
+                $table.bootstrapTable({
+                    method: 'get',
+                    url: "/api/Supervise/TownLiableInfo",
+                    striped: true,
+                    pagination: true,
+                    singleSelect: false,
+                    pageSize: 10,
+                    pageList: [10, 20, 50],
+                    search: false, //不显示 搜索框
+                    showColumns: false, //不显示下拉框（选择显示的列）
+                    sidePagination: "server", //服务端请求
+                    queryParams: queryParamsPostsed,
+                    columns: [
+                        {
+                            field: 'name',
+                            title: '接收人',
+                            align: 'center', // 左右居中
+                            valign: 'middle' // 上下居中
+
+                        },
+                        {
+                            field: 'position',
+                            title: '岗位',
+                            align: 'center', // 左右居中
+                            valign: 'middle', // 上下居中
+                        },
+                        {
+                            field: 'receiveUserPhone',
+                            title: '手机',
+                            align: 'center', // 左右居中
+                            valign: 'middle' // 上下居中
+
+                        },
+                        {
+                            field: 'sendTime',
+                            title: '发送时间',
+                            align: 'center', // 左右居中
+                            valign: 'middle', // 上下居中
+                            formatter: function (value, row) {
+                                return row.sendTime != null
+                                    ? parseJsonDate(row.receiveDateTime).formatDate('yyyy-MM-dd HH:mm')
+                                    : "-";
+                            }
+                        }
+                    ]
+                });
+
+        }
+    </script>
+</body>
+</html>

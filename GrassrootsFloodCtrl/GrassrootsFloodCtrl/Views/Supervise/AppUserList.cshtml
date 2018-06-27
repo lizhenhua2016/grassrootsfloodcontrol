@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "AppUserList";
+    Layout = "~/Views/Shared/_SuperviseLayout.cshtml";
+}
+@Styles.Render("~/css/bootstrap-plugin")
+<div class="col-sm-12">
+    <nav class="navbar navbar-default">
+        <div class="form-inline SearchBar" style="margin-top:6px;margin-left:20px;">
+            <div class="form-group">
+                <label for="name">单位名称:</label>
+                <input type="text" class="form-control" id="adcdName" name="key" placeholder="单位名称...">
+            </div>
+            <button type="submit" class="btn btn-primary" id="search">搜索</button>
+            <button type="submit" class="btn btn-primary" id="downSumExcel">导出已注册统计</button>
+            <button type="submit" class="btn btn-primary" id="downNoRegisterExcel">导出未注册名单</button>
+            <button type="submit" class="btn btn-primary" id="downRegisterExcel">导出已注册名单</button>
+            <button type="submit" class="btn btn-primary" id="checkUser" style="display:none">核对信息</button>
+        </div>
+    </nav>
+    <div  style="overflow-y:auto;height:550px">
+        <table id="exampleTable" data-mobile-responsive="true"></table>
+    </div> 
+</div>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="~/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="~/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="~/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="~/js/plugins/validate/messages_zh.min.js"></script>
+<script src="~/js/plugins/jqTreeGrid/jquery.treegrid.min.js"></script>
+<script src="~/js/plugins/jqTreeGrid/jquery.treegrid.extension.js"></script>
+<script src="~/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js"></script>
+<script src="~/js/plugins/chosen/chosen.jquery.js"></script>
+<script src="~/js/plugins/layer/layer.js"></script>
+<script src="~/js/content.js?v=1.0.0"></script>
+@Scripts.Render("~/js/plupload")
+@Scripts.Render("~/js/bootstrap-plugin")
+@Scripts.Render("~/Bundles/vendor/js/bottom")
+<script type="text/javascript">
+
+    $(function () {
+        getCheck(9);
+        load();
+        if ('@ViewData["role"]' == "镇级" || '@ViewData["role"]' == "县级") {
+            $("#checkUser").show();
+        }
+        if ('@ViewData["role"]' != "省级" && '@ViewData["role"]' != "市级") {
+            $("#downSumExcel").hide();
+        }
+        if ('@ViewData["role"]' == "省级") {
+            $("#downRegisterExcel").hide();
+            $("#downNoRegisterExcel").hide();
+        }
+        $("#search").click(function () {
+            $('#table').bootstrapTable("destroy");
+            load();
+        })
+        $("#downSumExcel").click(function () {
+            window.location.href = "/Supervise/DownSumExcel";
+        });
+        $("#downRegisterExcel").click(function () {
+            window.location.href = "/Supervise/DownRegisterExcel";
+        });
+        $("#downNoRegisterExcel").click(function () {
+            window.location.href = "/Supervise/DownNoRegisterExcel";
+        });
+
+        $("#checkUser").click(function () {
+            layer.open({
+                type: 2,
+                title: '增加',
+                maxmin: true,
+                shadeClose: false, // 点击遮罩关闭层
+                area: ['800px', '200px'],
+                content: '/Supervise/CheckUser'
+            });
+            //openModal('核对信息', '/Supervise/CheckUser',{ width: 750 });
+        })
+    });
+    function load() {
+        $('#exampleTable')
+            .bootstrapTreeTable(
+                {
+                    id: 'adcdId',
+                    code: 'adcdId',
+                    parentColumn: 'parentId',
+                    type: "GET", // 请求数据的ajax类型
+                    url: '/api/sumAppUser/list', // 请求数据的ajax的url
+                    ajaxParams: {
+                        adcd: '@ViewData["adcd"]',
+                        adcdName: $("#adcdName").val()
+                    }, // 请求数据的ajax的data属性
+                    expandColumn: '1', // 在哪一列上面显示展开按钮
+                    striped: true, // 是否各行渐变色
+                    bordered: true, // 是否显示边框
+                    expandAll: false, // 是否全部展开
+                    // toolbar : '#exampleToolbar',
+                    columns: [
+                        {
+                            field: 'adnm',
+                            align: 'center',
+                            title: '单位名称'
+                        },
+                        {
+                            field: 'userCount',
+                            align: 'center',
+                            title: '责任人总人数'
+                        },
+                        {
+                            field: 'appcount',
+                            align: 'center',
+                            title: '已注册人数',
+                        },
+                        {
+                            title: '未注册人员信息',
+                            field: 'adcd',
+                            align: 'center',
+                            formatter: function (item, index) {
+                                var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="查看" onclick="read(\''
+                                    + item.adcd
+                                    + '\')"><i class="fa fa-align-justify"></i></a> ';
+                                if ('@ViewData["role"]' == "镇级") {
+                                    var f = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="核对信息" onclick="checkVillage(\''
+                                    + item.adcd
+                                    + '\')"><i class="fa fa-check"></i></a> ';
+                                    return e+f;
+                                }
+                                return e;
+                            }
+                        }]
+                });
+    }
+    function read(adcd) {
+        openModal('未注册人员信息',  '/Supervise/AppNoRegister?adcd=' + adcd, { width: 750 });
+    }
+    function checkVillage(adcd) {
+        $.ajax({
+            url: '/api/sumAppUser/checkTown',
+            type: 'Get', //GET
+            data: {
+                adcd:adcd
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.isSuccess == true) {
+                    parent.layer.msg("操作成功");
+                    parent.load();
+                    var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+                    parent.layer.close(index);
+                } else {
+                    parent.layer.msg(data.errorMsg);
+                }
+            }
+        })
+    }
+</script>

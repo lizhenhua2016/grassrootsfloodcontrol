@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Leader.cshtml";
+}
+
+<link href="~/css/Leader/style.css" rel="stylesheet" />
+<link href="~/css/Leader/bootstrap.min.css" rel="stylesheet" />
+<!--首页-->
+<div class="row" style="margin-top:20px; ">
+    <div class="col-xs-8">
+        <div class="col-xs-6">
+            <div class="home-block" style="height:210px;">
+                <div class="title"><h3>行政区划</h3></div>
+                <div class="division">
+                    <div class="line"><p class="number"><b class="blue"><a href="/Supervise/LeaderIndex" id="adcountry"></a></b> 个</p><p>县(市、区)</p></div>
+                    <div class="line"><p class="number"><b class="green"><a href="/Supervise/LeaderIndex" id="adtown"></a></b> 个</p><p>乡(镇、街道)</p></div>
+                    <div class="line" style="border-right:none;"><p class="number"><b class="orange"><a href="/Supervise/LeaderIndex" id="advillage"></a></b> 个</p><p>行政村(社区)</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="home-block" style="height:210px;">
+                <div class="title"><h3>防汛任务情况 <span class="sub-title">行政村总数 <em id="floodSumCount"></em> 个</span></h3></div>
+                <div class="clear"></div>
+                <div class="pie" id="floodTask" style="height:180px;width:68%">
+
+                </div>
+                <div class="pie-info" style="width:32%">
+                    <span><b id="floodheavy"></b> 个</span>
+                    <span><b id="floodlight"></b> 个</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="home-block" style="height:256px;">
+                <div class="title"><h3>基层防汛责任人<span class="sub-title">全省共 <em id="jcfxsum"></em> 人</span></h3></div>
+                <div class="responsible bg-county"><p>县级责任人<br /><b><a href="/StatisAnalysis/LeaderStatisPost" id="jcfxcountry"></a></b></p></div>
+                <div class="responsible bg-town"><p>乡镇责任人<br /><b><a href="/StatisAnalysis/LeaderStatisPost" id="jcfxtown"></a></b></p></div>
+                <div class="responsible bg-village" style="border-right:none;"><p>村级责任人<br /><b><a href="/StatisAnalysis/LeaderStatisPost" id="jcfxvillage"></a></b></p></div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="home-block" style="height:256px;">
+                <div class="title"><h3>应急管理<span class="sub-title" id="managementTime">2018年启动应急响应县(市、区) <a href="/Supervise/LeaderAppWarnList" id="managementCountry" style="color:black"></a> 个</span></h3></div>
+                <div class="clear"></div>
+                <div class="pie" id="management" style="height:180px;width:68%">
+
+                </div>
+                <div class="pie-info" style="width:32%">
+                    @*<p>启动应急响应县(市、区)<b id="managementCountry"></b>个</p>*@
+                    <span><b id="duty"></b></span>人
+                    @*<p>应到岗*@<span><b id="topost"></b></span>人@*</p>*@
+                    @*<p>已履职*@@*</p>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-9">
+            <div class="home-block" style="width:100%; height:280px;">
+                @*<div class="title"><h3>近30天责任人动态更新情况</h3></div>*@
+                <div class="graph" id="messageHistogram"  style="width:100%; height:350px;" >
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="home-block" style="height:285px; padding:0;">
+                <div class="situation"><p><b id="pic"></b> 张<br />村级防汛防台形势图</p></div>
+                <div class="situation" style="border-bottom:none;"><p><b class="green" id="appuser"></b> 人<br />完成安装防汛管理APP</p></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xs-4">
+        <div class="home-block right-block">
+            <div class="title"><h3>风险隐患点</h3></div>
+            <div class="col-xs-6 ">
+                <div class="danger-point risk-point" style="margin-right:25px">
+                    <p><b><a href="/StatisAnalysis/LeaderStatisType" id="pointcount"></a></b> 个<br />风险隐患点</p>
+                </div>
+                
+            </div>
+            <div class="col-xs-6 danger-point risk-people">
+                <p><b><a href="/StatisAnalysis/LeaderStatisType" id="pointpersoncount"></a></b> 人<br />可能受灾害影响人员</p>
+            </div>
+            <div class="risk-type typebg"><em class="type-wf">危房</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="dangerousCount"></a></b> 处</span></div>
+            <div class="risk-type"><em class="type-sh">山洪灾害危险区</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="torrentialFloodCount"></a></b> 个</span></div>
+            <div class="risk-type typebg"><em class="type-dz">地质灾害点</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="geologyCount"></a></b> 个</span></div>
+            <div class="risk-type"><em class="type-dw">低洼易涝区</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="lowLyingCount"></a></b> 个</span></div>
+            <div class="risk-type typebg"><em class="type-st">屋顶山塘</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="poolCount"></a></b> 座</span></div>
+            <div class="risk-type"><em class="type-df">堤防险段</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="dikeCount"></a></b> 段</span></div>
+            <div class="risk-type typebg"><em class="type-ht">海塘险段</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="seawallCount"></a></b> 段</span></div>
+            <div class="risk-type"><em class="type-qt">其他</em><span><b><a href="/StatisAnalysis/LeaderStatisType" id="otherCount"></a></b> 处</span></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="support">技术支持：浙江省水利水电勘测设计院    浙江大禹信息技术有限公司</div>
+</div>
+<script src="~/js/Echar/echarts.js"></script>
+@*<script src="~/js/Echar/echarts.common.min.js"></script>*@
+<script src="~/js/LeaderIndex.js"></script>
+
+
+
+

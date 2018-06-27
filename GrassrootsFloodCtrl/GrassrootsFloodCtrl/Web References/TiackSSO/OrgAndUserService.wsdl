@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="http://webservice.api.commnetsoft.com" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="http://webservice.api.commnetsoft.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webservice.api.commnetsoft.com">
+      <xsd:element name="getUserInfoById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="userid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfoByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeJob">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="jobid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="jobname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orderby" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeJobResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteOrg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="describe" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteOrgResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="syncPosition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="args" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="describe" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="syncPositionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSsoUserByMap">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="args" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSsoUserByMapResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="scope" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPosition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="positionid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getPositionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteoffice">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in3" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in4" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteofficeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeOrg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="args" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="describe" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeOrgResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizePosition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="positionid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="positionname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orderby" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizePositionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOrgInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getOrgInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="args" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="describe" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteAppUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteAppUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMapUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="mapservicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getMapUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserRoleById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="userid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserRoleByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserRole">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserRoleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeOffice">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in3" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in4" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in5" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in6" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in7" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="synchronizeOfficeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteJob">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="in0" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in1" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in2" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in3" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="in4" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteJobResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deletePosition">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="positionid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deletePositionResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="describe" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteUserById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="userid" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="describe" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteUserByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSubOrg">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="scope" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSubOrgResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getSubOrgResponse">
+    <wsdl:part name="parameters" element="tns:getSubOrgResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserRoleRequest">
+    <wsdl:part name="parameters" element="tns:getUserRole" />
+  </wsdl:message>
+  <wsdl:message name="getUserListResponse">
+    <wsdl:part name="parameters" element="tns:getUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteofficeResponse">
+    <wsdl:part name="parameters" element="tns:deleteofficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAppUserResponse">
+    <wsdl:part name="parameters" element="tns:deleteAppUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="deletePositionRequest">
+    <wsdl:part name="parameters" element="tns:deletePosition" />
+  </wsdl:message>
+  <wsdl:message name="deletePositionResponse">
+    <wsdl:part name="parameters" element="tns:deletePositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoByIdResponse">
+    <wsdl:part name="parameters" element="tns:getUserInfoByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserResponse">
+    <wsdl:part name="parameters" element="tns:deleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoByIdRequest">
+    <wsdl:part name="parameters" element="tns:getUserInfoById" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeJobResponse">
+    <wsdl:part name="parameters" element="tns:synchronizeJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="getOrgInfoRequest">
+    <wsdl:part name="parameters" element="tns:getOrgInfo" />
+  </wsdl:message>
+  <wsdl:message name="getUserRoleResponse">
+    <wsdl:part name="parameters" element="tns:getUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSsoUserByMapResponse">
+    <wsdl:part name="parameters" element="tns:getSsoUserByMapResponse" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeOfficeResponse">
+    <wsdl:part name="parameters" element="tns:synchronizeOfficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="syncPositionResponse">
+    <wsdl:part name="parameters" element="tns:syncPositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMapUserRequest">
+    <wsdl:part name="parameters" element="tns:getMapUser" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeUserRequest">
+    <wsdl:part name="parameters" element="tns:synchronizeUser" />
+  </wsdl:message>
+  <wsdl:message name="syncPositionRequest">
+    <wsdl:part name="parameters" element="tns:syncPosition" />
+  </wsdl:message>
+  <wsdl:message name="getUserRoleByIdRequest">
+    <wsdl:part name="parameters" element="tns:getUserRoleById" />
+  </wsdl:message>
+  <wsdl:message name="getUserRoleByIdResponse">
+    <wsdl:part name="parameters" element="tns:getUserRoleByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMapUserResponse">
+    <wsdl:part name="parameters" element="tns:getMapUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeOrgRequest">
+    <wsdl:part name="parameters" element="tns:synchronizeOrg" />
+  </wsdl:message>
+  <wsdl:message name="deleteJobRequest">
+    <wsdl:part name="parameters" element="tns:deleteJob" />
+  </wsdl:message>
+  <wsdl:message name="getPositionRequest">
+    <wsdl:part name="parameters" element="tns:getPosition" />
+  </wsdl:message>
+  <wsdl:message name="getOrgInfoResponse">
+    <wsdl:part name="parameters" element="tns:getOrgInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSubOrgRequest">
+    <wsdl:part name="parameters" element="tns:getSubOrg" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeJobRequest">
+    <wsdl:part name="parameters" element="tns:synchronizeJob" />
+  </wsdl:message>
+  <wsdl:message name="synchronizePositionResponse">
+    <wsdl:part name="parameters" element="tns:synchronizePositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeUserResponse">
+    <wsdl:part name="parameters" element="tns:synchronizeUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteofficeRequest">
+    <wsdl:part name="parameters" element="tns:deleteoffice" />
+  </wsdl:message>
+  <wsdl:message name="synchronizePositionRequest">
+    <wsdl:part name="parameters" element="tns:synchronizePosition" />
+  </wsdl:message>
+  <wsdl:message name="getSsoUserByMapRequest">
+    <wsdl:part name="parameters" element="tns:getSsoUserByMap" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeOfficeRequest">
+    <wsdl:part name="parameters" element="tns:synchronizeOffice" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserRequest">
+    <wsdl:part name="parameters" element="tns:deleteUser" />
+  </wsdl:message>
+  <wsdl:message name="deleteAppUserRequest">
+    <wsdl:part name="parameters" element="tns:deleteAppUser" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserByIdResponse">
+    <wsdl:part name="parameters" element="tns:deleteUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteJobResponse">
+    <wsdl:part name="parameters" element="tns:deleteJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteOrgResponse">
+    <wsdl:part name="parameters" element="tns:deleteOrgResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserByIdRequest">
+    <wsdl:part name="parameters" element="tns:deleteUserById" />
+  </wsdl:message>
+  <wsdl:message name="getUserListRequest">
+    <wsdl:part name="parameters" element="tns:getUserList" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoRequest">
+    <wsdl:part name="parameters" element="tns:getUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="deleteOrgRequest">
+    <wsdl:part name="parameters" element="tns:deleteOrg" />
+  </wsdl:message>
+  <wsdl:message name="getPositionResponse">
+    <wsdl:part name="parameters" element="tns:getPositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoResponse">
+    <wsdl:part name="parameters" element="tns:getUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="synchronizeOrgResponse">
+    <wsdl:part name="parameters" element="tns:synchronizeOrgResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OrgAndUserServicePortType">
+    <wsdl:operation name="getUserInfoById">
+      <wsdl:input name="getUserInfoByIdRequest" message="tns:getUserInfoByIdRequest" />
+      <wsdl:output name="getUserInfoByIdResponse" message="tns:getUserInfoByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeJob">
+      <wsdl:input name="synchronizeJobRequest" message="tns:synchronizeJobRequest" />
+      <wsdl:output name="synchronizeJobResponse" message="tns:synchronizeJobResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteOrg">
+      <wsdl:input name="deleteOrgRequest" message="tns:deleteOrgRequest" />
+      <wsdl:output name="deleteOrgResponse" message="tns:deleteOrgResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="syncPosition">
+      <wsdl:input name="syncPositionRequest" message="tns:syncPositionRequest" />
+      <wsdl:output name="syncPositionResponse" message="tns:syncPositionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdl:input name="getUserInfoRequest" message="tns:getUserInfoRequest" />
+      <wsdl:output name="getUserInfoResponse" message="tns:getUserInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getSsoUserByMap">
+      <wsdl:input name="getSsoUserByMapRequest" message="tns:getSsoUserByMapRequest" />
+      <wsdl:output name="getSsoUserByMapResponse" message="tns:getSsoUserByMapResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <wsdl:input name="getUserListRequest" message="tns:getUserListRequest" />
+      <wsdl:output name="getUserListResponse" message="tns:getUserListResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getPosition">
+      <wsdl:input name="getPositionRequest" message="tns:getPositionRequest" />
+      <wsdl:output name="getPositionResponse" message="tns:getPositionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteoffice">
+      <wsdl:input name="deleteofficeRequest" message="tns:deleteofficeRequest" />
+      <wsdl:output name="deleteofficeResponse" message="tns:deleteofficeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeOrg">
+      <wsdl:input name="synchronizeOrgRequest" message="tns:synchronizeOrgRequest" />
+      <wsdl:output name="synchronizeOrgResponse" message="tns:synchronizeOrgResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="synchronizePosition">
+      <wsdl:input name="synchronizePositionRequest" message="tns:synchronizePositionRequest" />
+      <wsdl:output name="synchronizePositionResponse" message="tns:synchronizePositionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getOrgInfo">
+      <wsdl:input name="getOrgInfoRequest" message="tns:getOrgInfoRequest" />
+      <wsdl:output name="getOrgInfoResponse" message="tns:getOrgInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeUser">
+      <wsdl:input name="synchronizeUserRequest" message="tns:synchronizeUserRequest" />
+      <wsdl:output name="synchronizeUserResponse" message="tns:synchronizeUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAppUser">
+      <wsdl:input name="deleteAppUserRequest" message="tns:deleteAppUserRequest" />
+      <wsdl:output name="deleteAppUserResponse" message="tns:deleteAppUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMapUser">
+      <wsdl:input name="getMapUserRequest" message="tns:getMapUserRequest" />
+      <wsdl:output name="getMapUserResponse" message="tns:getMapUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserRoleById">
+      <wsdl:input name="getUserRoleByIdRequest" message="tns:getUserRoleByIdRequest" />
+      <wsdl:output name="getUserRoleByIdResponse" message="tns:getUserRoleByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserRole">
+      <wsdl:input name="getUserRoleRequest" message="tns:getUserRoleRequest" />
+      <wsdl:output name="getUserRoleResponse" message="tns:getUserRoleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeOffice">
+      <wsdl:input name="synchronizeOfficeRequest" message="tns:synchronizeOfficeRequest" />
+      <wsdl:output name="synchronizeOfficeResponse" message="tns:synchronizeOfficeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteJob">
+      <wsdl:input name="deleteJobRequest" message="tns:deleteJobRequest" />
+      <wsdl:output name="deleteJobResponse" message="tns:deleteJobResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePosition">
+      <wsdl:input name="deletePositionRequest" message="tns:deletePositionRequest" />
+      <wsdl:output name="deletePositionResponse" message="tns:deletePositionResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input name="deleteUserRequest" message="tns:deleteUserRequest" />
+      <wsdl:output name="deleteUserResponse" message="tns:deleteUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserById">
+      <wsdl:input name="deleteUserByIdRequest" message="tns:deleteUserByIdRequest" />
+      <wsdl:output name="deleteUserByIdResponse" message="tns:deleteUserByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getSubOrg">
+      <wsdl:input name="getSubOrgRequest" message="tns:getSubOrgRequest" />
+      <wsdl:output name="getSubOrgResponse" message="tns:getSubOrgResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrgAndUserServiceHttpBinding" type="tns:OrgAndUserServicePortType">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getUserInfoById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserInfoByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserInfoByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeJob">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="synchronizeJobRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="synchronizeJobResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteOrg">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteOrgRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteOrgResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="syncPosition">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="syncPositionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="syncPositionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserInfoRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserInfoResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSsoUserByMap">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getSsoUserByMapRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSsoUserByMapResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserListRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserListResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPosition">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getPositionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPositionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteoffice">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteofficeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteofficeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeOrg">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="synchronizeOrgRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="synchronizeOrgResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="synchronizePosition">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="synchronizePositionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="synchronizePositionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrgInfo">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getOrgInfoRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getOrgInfoResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="synchronizeUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="synchronizeUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAppUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteAppUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteAppUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMapUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getMapUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getMapUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRoleById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserRoleByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserRoleByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRole">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserRoleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserRoleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="synchronizeOffice">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="synchronizeOfficeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="synchronizeOfficeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteJob">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteJobRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteJobResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePosition">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deletePositionRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deletePositionResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteUserByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteUserByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSubOrg">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getSubOrgRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSubOrgResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrgAndUserService">
+    <wsdl:port name="OrgAndUserServiceHttpPort" binding="tns:OrgAndUserServiceHttpBinding">
+      <wsdlsoap:address location="http://123.157.159.139/sso/service/OrgAndUserService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

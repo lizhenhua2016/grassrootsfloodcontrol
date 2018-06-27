@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="http://webservice.api.commnetsoft.com" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="http://webservice.api.commnetsoft.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webservice.api.commnetsoft.com">
+      <xsd:element name="logout">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="token" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="logoutResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getST">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="accesstoken" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getSTResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserSys">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="accesstoken" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserSysResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserRole">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="accesstoken" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserRoleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateST">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="proxyapp" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="proxytoken" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="generateSTResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ticketValidation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="st" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ticketValidationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="accesstoken" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserInfoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getToken">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="authcode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTokenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="idValidation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="loginname" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="orgcoding" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="encryptiontype" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="idValidationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="refAccessToken">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="servicecode" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="time" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="sign" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="refreshtoken" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="datatype" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="refAccessTokenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="out" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="refAccessTokenResponse">
+    <wsdl:part name="parameters" element="tns:refAccessTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserRoleRequest">
+    <wsdl:part name="parameters" element="tns:getUserRole" />
+  </wsdl:message>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part name="parameters" element="tns:logoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="ticketValidationResponse">
+    <wsdl:part name="parameters" element="tns:ticketValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTokenResponse">
+    <wsdl:part name="parameters" element="tns:getTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="generateSTRequest">
+    <wsdl:part name="parameters" element="tns:generateST" />
+  </wsdl:message>
+  <wsdl:message name="idValidationRequest">
+    <wsdl:part name="parameters" element="tns:idValidation" />
+  </wsdl:message>
+  <wsdl:message name="getSTRequest">
+    <wsdl:part name="parameters" element="tns:getST" />
+  </wsdl:message>
+  <wsdl:message name="refAccessTokenRequest">
+    <wsdl:part name="parameters" element="tns:refAccessToken" />
+  </wsdl:message>
+  <wsdl:message name="getTokenRequest">
+    <wsdl:part name="parameters" element="tns:getToken" />
+  </wsdl:message>
+  <wsdl:message name="getUserRoleResponse">
+    <wsdl:part name="parameters" element="tns:getUserRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="logoutRequest">
+    <wsdl:part name="parameters" element="tns:logout" />
+  </wsdl:message>
+  <wsdl:message name="generateSTResponse">
+    <wsdl:part name="parameters" element="tns:generateSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSTResponse">
+    <wsdl:part name="parameters" element="tns:getSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="idValidationResponse">
+    <wsdl:part name="parameters" element="tns:idValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoRequest">
+    <wsdl:part name="parameters" element="tns:getUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoResponse">
+    <wsdl:part name="parameters" element="tns:getUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserSysRequest">
+    <wsdl:part name="parameters" element="tns:getUserSys" />
+  </wsdl:message>
+  <wsdl:message name="ticketValidationRequest">
+    <wsdl:part name="parameters" element="tns:ticketValidation" />
+  </wsdl:message>
+  <wsdl:message name="getUserSysResponse">
+    <wsdl:part name="parameters" element="tns:getUserSysResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SsoAuthServicePortType">
+    <wsdl:operation name="logout">
+      <wsdl:input name="logoutRequest" message="tns:logoutRequest" />
+      <wsdl:output name="logoutResponse" message="tns:logoutResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getST">
+      <wsdl:input name="getSTRequest" message="tns:getSTRequest" />
+      <wsdl:output name="getSTResponse" message="tns:getSTResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserSys">
+      <wsdl:input name="getUserSysRequest" message="tns:getUserSysRequest" />
+      <wsdl:output name="getUserSysResponse" message="tns:getUserSysResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserRole">
+      <wsdl:input name="getUserRoleRequest" message="tns:getUserRoleRequest" />
+      <wsdl:output name="getUserRoleResponse" message="tns:getUserRoleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="generateST">
+      <wsdl:input name="generateSTRequest" message="tns:generateSTRequest" />
+      <wsdl:output name="generateSTResponse" message="tns:generateSTResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ticketValidation">
+      <wsdl:input name="ticketValidationRequest" message="tns:ticketValidationRequest" />
+      <wsdl:output name="ticketValidationResponse" message="tns:ticketValidationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdl:input name="getUserInfoRequest" message="tns:getUserInfoRequest" />
+      <wsdl:output name="getUserInfoResponse" message="tns:getUserInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getToken">
+      <wsdl:input name="getTokenRequest" message="tns:getTokenRequest" />
+      <wsdl:output name="getTokenResponse" message="tns:getTokenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="idValidation">
+      <wsdl:input name="idValidationRequest" message="tns:idValidationRequest" />
+      <wsdl:output name="idValidationResponse" message="tns:idValidationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="refAccessToken">
+      <wsdl:input name="refAccessTokenRequest" message="tns:refAccessTokenRequest" />
+      <wsdl:output name="refAccessTokenResponse" message="tns:refAccessTokenResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SsoAuthServiceHttpBinding" type="tns:SsoAuthServicePortType">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="logout">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="logoutRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="logoutResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getST">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getSTRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSTResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserSys">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserSysRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserSysResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRole">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserRoleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserRoleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generateST">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="generateSTRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="generateSTResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ticketValidation">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="ticketValidationRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ticketValidationResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getUserInfoRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserInfoResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getToken">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getTokenRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTokenResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="idValidation">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="idValidationRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="idValidationResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="refAccessToken">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="refAccessTokenRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="refAccessTokenResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SsoAuthService">
+    <wsdl:port name="SsoAuthServiceHttpPort" binding="tns:SsoAuthServiceHttpBinding">
+      <wsdlsoap:address location="http://123.157.159.139/sso/service/SsoAuthService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

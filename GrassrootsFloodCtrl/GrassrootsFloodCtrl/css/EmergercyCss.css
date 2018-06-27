@@ -1,0 +1,23 @@
+﻿.summary {
+    position: absolute;
+    right: 60px;
+    top: 80px;
+    width: 280px;
+    z-index: 9999;
+    background-color: #fff;
+}
+
+.arear_emergency {
+    background-color: #fff;
+    width: 280px;
+    z-index: 9999;
+    right: 60px;
+    top: 180px;
+    position: absolute;
+}
+
+.arear_li {
+    border-bottom: 1px groove #E5E5E5;
+    display: block;
+    padding: 10px;
+}

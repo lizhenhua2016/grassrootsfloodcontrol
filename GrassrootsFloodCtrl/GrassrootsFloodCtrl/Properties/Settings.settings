@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrassrootsFloodCtrl.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GrassrootsFloodCtrl_TiackSSO_OrgAndUserService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://123.157.159.139/sso/service/OrgAndUserService</Value>
+    </Setting>
+    <Setting Name="GrassrootsFloodCtrl_TiackSSOAuth_SsoAuthService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://123.157.159.139/sso/service/SsoAuthService</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

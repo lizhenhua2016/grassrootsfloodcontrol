@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "AppWarnMomentCounty";
+    Layout = "~/Views/Shared/_SuperviseLayout.cshtml";
+}
+<link href="~/css/stylewarn.css" rel="stylesheet" />
+<div class="rightbox">
+    <div class="row" style="margin-top:16px;">
+        <div class="col-xs-12">
+            <div class="event-panel">
+                <div class="title"><span id="countyname" style="font-weight: bold"></span>&nbsp;&nbsp;&nbsp;<span>事件：</span><div style="display:inline-block" id="eventname"></div><a href="javascript:;" class="back">返回</a></div>
+                <div class="event-info">
+                    <div class="time"><span id="starttime"></span><br />创建时间</div>
+                    <div class="person"><span id="username"></span><br />创建人</div>
+                    <div class="message"><b id="messagenum"></b>条<br />消息数量</div>
+                    <div class="cometo"><b id="personnum"></b>人<br />应到岗</div>
+                    <div class="transfer" style="border-right:none;"><b id="transfernum"></b>人<br />总转移人数</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 m15">
+            <div id="flow" style="overflow:hidden;overflow-y:auto">
+                <div id="countyinfo">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <script type="text/javascript">
+        var eventId;
+        $(function () {
+            $("#flow").height($(document).height() - 200);
+            function GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]); return null;
+            }
+            var warneventid = GetQueryString("warneventid");
+            var adcdid = GetQueryString("adcdid");
+            //console.log(adcdid);
+            GetSingleEmergencyInfo(warneventid)
+            CountyMessageInfo(adcdid, warneventid)
+            //TownInfo(adcdid)
+            $(".back").on("click", function () {
+                history.back(-1)
+            });
+        })
+        //事件部分
+        function GetSingleEmergencyInfo(warneventid) {
+            eventId = warneventid;
+            $.ajax({
+                url: "/api/Supervise/GetSingleEmergencyInfo",
+                type: "get",
+                dataType: "json",
+                data: { "WarnEventId": warneventid },
+                success: function (data) {
+                    data = eval(data);
+                    $("#eventname").append(data.eventName);
+                    $("#starttime").append(data.startTime);
+                    $("#username").append(data.userName);
+                    $("#messagenum").append(data.messageNum);
+                    $("#personnum").append(data.personnum);
+                    $("#transfernum").append(data.transfernum);
+                    $("#countyname").append(data.adnm);
+                }
+            })
+        }
+
+
+        //县级消息信息统计
+        function CountyMessageInfo(adcdid, warneventid) {
+
+            //console.log(warneventid)
+            //console.log(adcdid)
+            $.ajax({
+                url: "/api/Supervise/CountyMessageInfo",
+                type: "get",
+                dataType: "json",
+                data: { "WarnEventId": warneventid },
+                success: function (data) {
+                    data = eval(data);
+                    $.each(data, function (i, item) {
+                        $("#countyinfo").append('<div id="message' + i + '" warninfoid=' +
+                            item.warnInfoId +
+                            ' class= "messageinfo moudle message-panel"><div class="message"><p><span>消息内容</span></p><p>' +
+                            item.message +
+                            '</p></div><div class="message-info"><div>应到岗<br /><b class="blue">' +
+                            item.shouldHereCount +
+                            '</b>人</div><div>已履职<br /><b class="green">' +
+                            item.postedCount +
+                            '</b>人</div><div>未履职<br /><b class="orange">' +
+                            item.postingCount +
+                            '</b>人</div><div>总转移人数<br /><b class="red">' +
+                            item.totalTransferPerson +
+                            '</b>人</div></div></div><div class="tablediv" id="indexdiv' + i + '" style="display:none; margin:0; background:#fff; border:#e5e9f2 1px solid;"><table><tr class="tabletitle"><th>单位名称</th><th>消息内容</th><th>应到岗</th><th>已履职</th><th>未履职</th><th>已签到</th><th>未签到</th><th>转移人数</th><th>操作</th></tr><tbody class="towninfo" id="table' + i + '"></tbody></table>')
+                    })
+                    $(".messageinfo").on("click", function () {
+                        $(this).next().slideToggle().siblings(".tablediv").hide("500");
+                        if ($(this).next().find(".village:eq(0)").length == 1) {
+                            //$(".village").remove();
+                            $(".towninfo").html("");
+                        } else {
+                            //$(".village").remove();
+                            $(".towninfo").html("");
+                            var index = $(this).attr("id");
+                            var needstr = "#table" + index.substring(7);
+                            var needindex = "#indexdiv" + index.substring(7);
+                            $(needindex).css("display", "block");
+                            //$(needstr).html("");
+                            var warninfoid = $(this).attr("warninfoid");
+                            $.ajax({
+                                url: "/api/Supervise/GetDutyInfoByWarnInfoId",
+                                type: "get",
+                                dataType: "json",
+                                data: { "PAdcdId": adcdid, "WarnInfoId": warninfoid },
+                                beforeSend: function () {
+                                    var index = layer.load(1, { shade: [0.1, '#fff'] });
+                                },
+                                success: function (data) {
+                                    data = eval(data);
+                                    $.each(data, function (i, item) {
+                                        var color = item.remark == "未进行转发" ? "message-red" : ""
+                                        $(needstr).append('<tr id="town' + i + '" adcdid=' +
+                                            item.adcdId +
+                                            ' class="village"><td class="villname"  style="cursor:pointer; color:blue"><img style="float:left;" class="direction jiantouy" src = "../../images/jiantou.png" /> ' +
+                                            item.adnm +
+                                            '</td ><td class="' + color+'">' +
+                                            item.remark +
+                                            '</td><td>' +
+                                            item.shouldNum +
+                                            '</td><td>' +
+                                            item.isDutyNum +
+                                            '</td><td>' +
+                                            item.notDutyNum +
+                                            '</td><td>' +
+                                            item.isSignNum +
+                                            '</td><td>' +
+                                            item.notSignNum +
+                                            '</td><td>' +
+                                            item.tranferNum +
+                                            '</td><td><a href="javascript:;" class="blue-button" data-adcd=' + item.adcd + '>已签到</a><a href="###" class="orange-button" data-adcd=' + item.adcd + '>未签到</a><a href="###" class="green-button" data-adcd=' + item.adcd + '>已履职</a></td></tr><tr style="display:none;" id="village' + i + '"></tr>')
+                                    });
+                                    $(".villname").on("click", function () {
+                                        if ($(this).parent().nextAll().eq(1).prop("className") == "vill") {
+                                            $(".vill").remove();
+                                            $(this).find("img").removeClass("jiantoux").addClass("jiantouy");
+                                        } else {
+                                            $(".vill").remove();
+                                            //console.log($(this).attr("adcdid"));
+                                            
+                                            $(".tablediv").find("img").removeClass("jiantoux").addClass("jiantouy");
+                                            $(this).find("img").removeClass("jiantouy").addClass("jiantoux");
+                                            var index2 = $(this).parent().attr("id");
+                                            console.log(index2);
+                                            var needstring = "#village" + index2.substring(4);
+                                            console.log(needstring);
+
+                                            //$(this).siblings('.tablediv').slideToggle();
+                                            //var warninfoid = $(this).parents(".tablediv").prev(".messageinfo").attr("warninfoid");
+                                            $.ajax({
+                                                url: "/api/Supervise/GetVillageDutyInfoByWarnInfoId",
+                                                type: "get",
+                                                dataType: "json",
+                                                data: { "PAdcdId": $(this).parent().attr("adcdid"), "WarnInfoId": warninfoid },
+                                                beforeSend: function () {
+                                                    var index = layer.load(1, { shade: [0.1, '#fff'] });
+                                                },
+                                                success: function (data) {
+                                                    data = eval(data);
+                                                    $.each(data, function (i, item) {
+                                                        $(needstring).after('<tr class="vill" style="background-color:#F8F8F8;"><td>' +
+                                                            item.adnm +
+                                                            '</td ><td class="message-red">' +
+                                                            item.remark +
+                                                            '</td><td>' +
+                                                            item.shouldNum +
+                                                            '</td><td>' +
+                                                            item.isDutyNum +
+                                                            '</td><td>' +
+                                                            item.notDutyNum +
+                                                            '</td><td>' +
+                                                            item.isSignNum +
+                                                            '</td><td>' +
+                                                            item.notSignNum +
+                                                            '</td><td>' +
+                                                            item.tranferNum +
+                                                            '</td><td><a href="javascript:;" class="blue-button" data-adcd=' + item.adcd + '>已签到</a><a href="javascript:;" class="orange-button" data-adcd=' + item.adcd + '>未签到</a><a href="javascript:;" class="green-button" data-adcd=' + item.adcd + '>已履职</a></td></tr>')
+                                                    })
+
+                                                    $(".green-button").on("click", function () {
+                                                        var adcd = $(this).attr("data-adcd");
+                                                        //layer.open({
+                                                        //    type: 2,
+                                                        //    shadeClose: true,
+                                                        //    shade: 0.5,
+                                                        //    area: ['800px', '600px'],
+                                                        //    title: "已履职人员列表",
+                                                        //    content: '/Supervise/BindTownLiableData?statue=1&warninfoid=' + warninfoid
+                                                        //});
+                                                        openModal("已履职人员列表", '/Supervise/BindTownPostedLiableData?adcd=' + adcd + '&warninfoid=' + warninfoid, { width: 750 });
+                                                    });
+
+                                                    $(".blue-button").on("click", function () {
+                                                        var adcd = $(this).attr("data-adcd");
+                                                        openModal("已签到人员列表", '/Supervise/BindTownReadLiableData?adcd=' + adcd + '&isRead=1&warninfoid=' + warninfoid, { width: 750 });
+                                                    });
+
+                                                    $(".orange-button").on("click", function () {
+                                                        var adcd = $(this).attr("data-adcd");
+                                                        openModal("未签到人员列表", '/Supervise/BindTownUnReadLiableData?adcd=' + adcd + '&isRead=0&warninfoid=' + warninfoid, { width: 750 });
+
+                                                    })
+                                                },
+                                                complete: function () {
+                                                    // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+                                                    layer.closeAll('loading');
+                                                }
+                                            })
+                                        }
+                                    });
+                                    $(".green-button").on("click", function () {
+                                        var adcd = $(this).attr("data-adcd");
+                                        //layer.open({
+                                        //    type: 2,
+                                        //    shadeClose: true,
+                                        //    shade: 0.5,
+                                        //    area: ['800px', '600px'],
+                                        //    title: "已履职人员列表",
+                                        //    content: '/Supervise/BindTownLiableData?statue=1&warninfoid=' + warninfoid
+                                        //});
+                                        openModal("已履职人员列表", '/Supervise/BindTownPostedLiableData?adcd=' + adcd + '&warninfoid=' + warninfoid, { width: 750 });
+                                    });
+
+                                    $(".blue-button").on("click", function () {
+                                        var adcd = $(this).attr("data-adcd");
+                                        openModal("已签到人员列表", '/Supervise/BindTownReadLiableData?adcd=' + adcd + '&isRead=1&warninfoid=' + warninfoid, { width: 750 });
+                                    });
+
+                                    $(".orange-button").on("click", function () {
+                                        var adcd = $(this).attr("data-adcd");
+                                        openModal("未签到人员列表", '/Supervise/BindTownUnReadLiableData?adcd=' + adcd + '&isRead=0&warninfoid=' + warninfoid, { width: 750 });
+
+                                    })
+
+                                },
+                                complete: function () {
+                                    // ReSharper disable once UseOfImplicitGlobalInFunctionScope
+                                    layer.closeAll('loading');
+                                }
+                            })
+                        }
+                        //$(this).siblings('.tablediv').slideToggle();
+
+                        
+                    })
+
+                }
+            })
+
+
+        }
+    </script>
+}

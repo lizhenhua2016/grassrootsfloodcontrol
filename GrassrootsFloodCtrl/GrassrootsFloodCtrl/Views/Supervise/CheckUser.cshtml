@@ -1,0 +1,120 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="/css/plugins/bootstrap-table/bootstrap-table.min.css"
+      rel="stylesheet">
+<link href="/css/plugins/jsTree/style.min.css" rel="stylesheet">
+<link href="/css/plugins/jqTreeGrid/jquery.treegrid.css"
+      rel="stylesheet">
+<link href="/css/plugins/summernote/summernote-0.8.8.css"
+      rel="stylesheet">
+<link href="/css/animate.css"
+      rel="stylesheet">
+<link href="/css/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="/css/style.css?v=4.1.0"
+      rel="stylesheet">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="form-horizontal m-t" id="signupForm" style="margin-top:20px">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">手机号码：</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="mobile" id="mobile" required="required" class="form-control">
+                            <span class="adddtable_ts" id="tsMsg" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8 col-sm-offset-3">
+                            <button type="submit" class="btn btn-primary" id="checkUser">查看是否注册</button>
+                            <button type="submit" class="btn btn-primary" id="checkTown">核对全镇级人员信息</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/js/plugins/validate/messages_zh.min.js"></script>
+<script src="/js/plugins/jsTree/jstree.min.js"></script>
+<script src="/js/plugins/jqTreeGrid/jquery.treegrid.min.js"></script>
+<script src="/js/plugins/jqTreeGrid/jquery.treegrid.extension.js"></script>
+<script src="/js/plugins/jqTreeGrid/jquery.treegrid.bootstrap3.js"></script>
+<script src="/js/plugins/chosen/chosen.jquery.js"></script>
+<script src="/js/plugins/layer/layer.js"></script>
+<script src="/js/content.js?v=1.0.0"></script>
+<script>
+    $(function () {
+        if ('@ViewData["role"]' == "县级") {
+            $("#checkTown").text("核对县本级人员信息");
+        }
+        //核对人员信息
+        $("#checkUser").click(function () {
+            var phone = $("#mobile").val();
+            if (phone=="") {
+                return $("#tsMsg").text("手机号码不能为空");
+            }
+            if (!isPoneAvailable(phone)) {
+                return $("#tsMsg").text("手机号码不正确");
+            }
+            $.ajax({
+                url: '/api/sumAppUser/checkUser',
+                type: 'Get', //GET
+                data: {
+                    phone: phone
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.isSuccess == true) {
+                        parent.layer.msg("操作成功");
+                        parent.load();
+                        var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+                        parent.layer.close(index);
+                    } else {
+                        $("#tsMsg").text(data.errorMsg);
+                    }
+                }
+            })
+        })
+        //核对镇级按钮只能点一次
+        $("#checkTown").one("click", function () {
+               $("#tsMsg").text("正在执行核对,请耐心等待！");
+                $.ajax({
+                    url: '/api/sumAppUser/checkTownUser',
+                    type: 'Get', //GET
+                    data: {
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.isSuccess == true) {
+                            parent.layer.msg("操作成功");
+                            checkBtn = false;
+                            parent.load();
+                            var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+                            parent.layer.close(index);
+                        } else {
+                            $("#tsMsg").text(data.errorMsg);
+                        }
+                    }
+                })
+        })
+        function isPoneAvailable(str) {
+            var myreg = /^[1][3,4,5,7,8,6][0-9]{9}$/;
+            if (!myreg.test(str)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    })
+</script>
